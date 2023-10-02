@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const {mongoose} = require('./db/mongoose');
 
@@ -10,6 +11,9 @@ const {List, Task} = require('./db/models');
 
 // Load body-parser middleware
 app.use(bodyParser.json());
+
+// Enable CORS
+app.use(cors());
 
 // Route Handlers
 // List Routes
