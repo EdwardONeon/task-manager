@@ -91,7 +91,7 @@ app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
         _id: req.params.taskId,
         _listId: req.params.listId
     }, { $set: req.body }).then(() => {
-        res.sendStatus(200);
+        res.send({message: 'updated successfully!'})
     });
 });
 

@@ -37,4 +37,10 @@ export class TaskViewComponent implements OnInit {
     })
   }
 
+  onTaskClick(task: Task) {
+    this.taskService.completeTask(task).subscribe(() => {
+      task.completed = !task.completed;
+    })
+  }
+
 }
