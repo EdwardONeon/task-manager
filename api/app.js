@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 
 // Load in the mongoose models 
 const {List, Task, User} = require('./db/models');
-const { access } = require('fs');
 
 // Middleware
 
@@ -16,7 +15,8 @@ const { access } = require('fs');
 app.use(bodyParser.json());
 
 // Enable CORS
-app.use(cors());
+app.use(cors())
+
 
 // Verify refresh token middleware (which will be verifying the session)
 let verifySession = (req, res, next) => {
@@ -44,7 +44,7 @@ let verifySession = (req, res, next) => {
         user.sessions.forEach((session) => {
             if (session.token === refreshToken) {
                 // check if session is expired
-                if (User.hasRefreshTokenExpired(session.expireAt) === false) {
+                if (User.hasRefreshTokenExpired(session.expiresAt) === false) {
                     // refreshtoken is not expired
                     isSessionValid = true;
                 }
@@ -57,7 +57,9 @@ let verifySession = (req, res, next) => {
         } else {
             return Promise.reject({
                 'error':'Refresh token has expired or the session is invalid',
-                'message': `id is ${_id}`
+                'message': `id is ${_id}`,
+                'valid': `Session is ${isSessionValid}`,
+                'refresh-token': `${refreshToken}`
             })
         }
     }).catch((e) => {
