@@ -12,7 +12,7 @@ import { TaskService } from 'src/app/task.service';
 export class TaskViewComponent implements OnInit {
 
   lists: List[] = [];
-  tasks: Task[] = [];
+  tasks: Task[] | undefined;
   selectedListId: string = "";
 
   constructor(private taskService: TaskService, private route: ActivatedRoute) { }
@@ -26,7 +26,7 @@ export class TaskViewComponent implements OnInit {
             this.tasks = tasks;
           })
         } else {
-          this.tasks = [];
+          this.tasks = undefined;
         }
 
       }
