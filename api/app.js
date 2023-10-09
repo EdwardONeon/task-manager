@@ -130,7 +130,7 @@ app.patch('/lists/:listId', authenticate, (req, res) => {
     List.findOneAndUpdate({_id: req.params.listId, _userId: req.user_id}, {
         $set: req.body
     }).then(() => {
-        res.sendStatus(200);
+        res.send({"message": "updated successfully"});
     });
 });
 
@@ -209,7 +209,7 @@ app.patch('/lists/:listId/tasks/:taskId', authenticate, (req, res) => {
                 _id: req.params.taskId,
                 _listId: req.params.listId
             }, { $set: req.body }).then(() => {
-                res.send({message: 'updated successfully!'})
+                res.send({"message": "updated successfully!"})
             });
         } else {
             res.sendStatus(404);

@@ -26,6 +26,14 @@
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 42px;
+
+  .top-bar {
+    display: flex;
+    .title {
+      flex-grow: 1;
+      margin: 0;
+    }
+  }
 }
 
 .list-menu {
